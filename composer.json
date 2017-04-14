@@ -1,0 +1,21 @@
+{
+    "name": "metooweb/phpexcel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "metooweb",
+            "email": "1058776960@qq.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpexcel": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "metooweb\\phpexcel\\": "src/"
+        }
+    }
+
+
+}
