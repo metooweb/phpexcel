@@ -37,6 +37,7 @@ class Reader
         empty($this->sheet) && $this->sheet();
 
         echo $this->sheet->getCellByColumnAndRow(1,2)->getValue();
+		
 
 
 
