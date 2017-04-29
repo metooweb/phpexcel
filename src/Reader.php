@@ -20,6 +20,11 @@ class Reader
     protected $sheet;
     protected $excel;
 
+    public static function init(){
+
+        return new self();
+    }
+
     public function file($file){
         $this->file = $file;
         $this->excel = \PHPExcel_IOFactory::load($file);
@@ -32,16 +37,28 @@ class Reader
         return $this;
     }
 
-    public function line($index=0){
-
+    /**
+     * read line data
+     * @param int $startRow
+     * @param string $startColumn
+     * @param null $endRow
+     * @param null $endColum
+     * @return array
+     */
+    public function line($startRow = 1 , $startColumn = 'A' , $endRow = null ,  $endColum = null ){
         empty($this->sheet) && $this->sheet();
+        $ret = [];
+        $rowIterator = $this->sheet->getRowIterator( $startRow , $endRow );
+        foreach ($rowIterator as $key=>$value){
+            $line = [];
+            $cellIterator = $value->getCellIterator($startColumn , $endColum);
+            foreach ( $cellIterator as $cell){
+                $line[] = $cell->getValue();
+            }
+            $ret[] = $line;
+        }
 
-        echo $this->sheet->getCellByColumnAndRow(1,2)->getValue();
-		
-
-
-
-
+        return $ret;
     }
 
 
